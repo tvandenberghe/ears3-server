@@ -1,0 +1,749 @@
+
+
+[
+    {
+        "name": "measureTS",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "time",
+                "longName": "Measure time",
+                "type": "double",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "date",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "date",
+                "longName": "Date",
+                "units": "ddmmyy",
+                "type": "string",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%s",
+                "axis": "unknown"
+            }
+        ]
+    },
+    {
+        "name": "time",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "time",
+                "longName": "Time",
+                "units": "hhmmss.ss",
+                "type": "string",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%s",
+                "axis": "unknown"
+            }
+        ]
+    },
+    {
+        "name": "lat",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "lat",
+                "longName": "Latitude",
+                "units": "\u00b0",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "long",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "lon",		  
+                "longName": "Longitude",
+                "units": "\u00b0",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "head",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "heading",		  
+                "longName": "Heading",
+                "units": "\u00b0",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "speed",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "speed",		  
+                "longName": "Speed",
+                "units": "knot",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "depth",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "depth",		  
+                "longName": "Depth",
+                "units": "m",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "cog",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "cog",		  
+                "longName": "COG",
+                "units": "\u00b0",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "sog",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "sog",		  
+                "longName": "SOG",
+                "units": "knot",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "measureTS",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "time",		  
+                "longName": "Measure time",
+                "type": "double",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "velocity",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "mean_windspeed",		  
+                "longName": "Wind Mean Velocity",
+                "units": "m\/s",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "gust",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "instantaneous_wind_speed",		  
+                "longName": "Wind Gust",
+                "units": "m\/s",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "direction",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "wind_direction",		  
+                "longName": "Wind Direction",
+                "units": "\u00b0",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "airtemp",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "air_temperature",		  
+                "longName": "Air Temperature",
+                "units": "\u00b0C",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "humidity",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "humidity",		  
+                "longName": "Humidity",
+                "units": "%",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "radiation",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "radiation",		  
+                "longName": "Solar Radiation",
+                "units": "wm2",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "pressure",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "pressure",		  
+                "longName": "Atm Pressure",
+                "units": "hPa",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "watertemp",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "water_temp",		  
+                "longName": "Water Temperature",
+                "units": "\u00b0C",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "measureTS",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "time",		  
+                "longName": "Measure time",
+                "type": "double",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "salinity",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "salinity",		  
+                "longName": "Water Salinity",
+                "units": "psu",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "watertemp",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "water_temperature",		  
+                "longName": "Water Temperature",
+                "units": "\u00b0C",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "fluo",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "fluorometry",		  
+                "longName": "Raw Fluorometry",
+                "units": "V",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "conduct",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "conductivity",		  
+                "longName": "Conductivity",
+                "units": "mSms",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "sigmat",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "sigmat",		  
+                "longName": "Sigmat",
+                "units": "Kg\/m3",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "turbidityL",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "turbidityL",		  
+                "longName": "turbidityL",
+                "units": "FTU",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+    {
+        "name": "turbidityH",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "turbidityH",		  
+                "longName": "turbidityH",
+                "units": "FTU",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "obsL",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "OBS L",		  
+                "longName": "Low turbidity by optical backscatter point sensor",
+                "units": "FTU",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "obsH",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "OBS H",		  
+                "longName": "High turbidity by optical backscatter point sensor",
+                "units": "FTU",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "chlorophyll",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "Chlorophyll",		  
+                "longName": "Chlorophyll concentration",
+                "units": "µg/l",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "blueAlgae",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "Blue Algae",		  
+                "longName": "Blue algae concentration", 
+                "units": "µg/l",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "cdom",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "CDOM",		  
+                "longName": "Colored dissolved organic matter",
+                "units": "µg/l",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "ph",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "pH",		  
+                "longName": "potential of hydrogen",
+                "units": "",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "fluorescence",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "Fluorescence",		  
+                "longName": "Fluorescence",
+                "units": "µg/l",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "pco2",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "pCO2",		  
+                "longName": "Partial pressure of carbon dioxide",
+                "units": "µAtm",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    },
+        {
+        "name": "par",
+        "major": 0,
+        "minor": 0,
+        "datas": [
+            {
+                "name": "PAR",		  
+                "longName": "Photosynthetically active radiation",
+                "units": "µmol/S/m2",
+                "type": "float",
+                "positive": "unknown",
+                "cardinalityMin": 1,
+                "cardinalityMax": 1,
+                "cFormat": "%.6f",
+                "axis": "unknown",
+                "missingValueAsDouble": 0,
+                "validMin": "-Infinity",
+                "validMax": "Infinity"
+            }
+        ]
+    }
+]
+

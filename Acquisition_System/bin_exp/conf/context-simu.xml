@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	   xmlns:int="http://www.springframework.org/schema/integration"
+	   xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	   xmlns:int-ip="http://www.springframework.org/schema/integration/ip"
+	
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+		http://www.springframework.org/schema/integration/ip http://www.springframework.org/schema/integration/ip/spring-integration-ip.xsd">
+
+	<!-- Raw data files -->
+	<bean id="weatherDriver" class="fr.ifremer.simu.driver.WeatherDriver" />
+	<int:inbound-channel-adapter ref="weatherDriver" method="message" channel="udpChannel_20200">
+		<int:poller fixed-rate="100" />
+	</int:inbound-channel-adapter>
+
+	<!-- Another Java Class -->
+	<bean id="gyroDriver" class="fr.ifremer.simu.driver.GyroDriver" />
+	<int:inbound-channel-adapter ref="gyroDriver" method="message" channel="udpChannel_20202">
+		<int:poller fixed-rate="500" />
+	</int:inbound-channel-adapter>
+
+	<bean id="hydroDriver" class="fr.ifremer.simu.driver.HydrologyDriver" />
+	<int:inbound-channel-adapter ref="hydroDriver" method="message" channel="udpChannel_20203">
+		<int:poller fixed-rate="1000" />
+	</int:inbound-channel-adapter>
+
+	<bean id="sbe21Driver" class="fr.ifremer.simu.driver.SBE21Driver" />
+	<int:inbound-channel-adapter ref="sbe21Driver" method="message" channel="udpChannel_20204">
+		<int:poller fixed-rate="1000" />
+	</int:inbound-channel-adapter>
+	
+	<bean id="dptDriver" class="fr.ifremer.simu.driver.DPTDriver" />
+	<int:inbound-channel-adapter ref="dptDriver" method="message" channel="udpChannel_20205">
+		<int:poller fixed-rate="1000" />
+	</int:inbound-channel-adapter>
+
+	<bean id="pupitriDriver" class="fr.ifremer.simu.driver.PupitriDriver" />
+	<int:inbound-channel-adapter ref="pupitriDriver" method="message" channel="udpChannel_20206">
+		<int:poller fixed-rate="1000" />
+	</int:inbound-channel-adapter>
+
+	<!-- NetCDF data files -->
+	<bean id="ggaIterator" class="fr.ifremer.simu.splitter.fileIterator.ShipnavToGGAIterator"/>
+	<bean id="hdtIterator" class="fr.ifremer.simu.splitter.fileIterator.ShipnavToHDTIterator"/>
+	<int-file:inbound-channel-adapter prevent-duplicates="false" directory="file:netcdf/shipnav" channel="shipnavGGAFiles">
+		<int:poller default="true" fixed-rate="10000" />
+	</int-file:inbound-channel-adapter>
+	<!-- Chain expression: 1) Add extension to header 2) Split the file into lines 3) Route the line to different channel depending on the extension containing in the header -->
+	<int:chain input-channel="shipnavGGAFiles">
+		<int:header-enricher>
+			<int:header name="extension" expression="payload.getName().substring(payload.getName().lastIndexOf('.'))" />
+		</int:header-enricher>
+		<int:splitter>
+			<bean class="fr.ifremer.simu.splitter.NetCDFFileSplitter">
+				<property name="fileIterator" ref="ggaIterator" />
+			</bean>
+		</int:splitter>
+		<int:router expression="headers.extension">
+			<int:mapping value=".nav" channel="udpChannel_20201" />
+		</int:router>
+	</int:chain>
+	<int-file:inbound-channel-adapter prevent-duplicates="false" directory="file:netcdf/shipnav" channel="shipnavHDTFiles">
+		<int:poller default="true" fixed-rate="10000" />
+	</int-file:inbound-channel-adapter>
+	<!-- Chain expression: 1) Add extension to header 2) Split the file into lines 3) Route the line to different channel depending on the extension containing in the header -->
+	<int:chain input-channel="shipnavHDTFiles">
+		<int:header-enricher>
+			<int:header name="extension" expression="payload.getName().substring(payload.getName().lastIndexOf('.'))" />
+		</int:header-enricher>
+		<int:splitter>
+			<bean class="fr.ifremer.simu.splitter.NetCDFFileSplitter">
+				<property name="fileIterator" ref="hdtIterator" />
+			</bean>
+		</int:splitter>
+		<int:router expression="headers.extension">
+			<int:mapping value=".nav" channel="udpChannel_20201" />
+		</int:router>
+	</int:chain>
+
+
+	<!-- Define UDP outbound channel -->
+	<int:channel id="udpChannel_20200" />
+	<int:channel id="udpChannel_20201" />
+	<int:channel id="udpChannel_20202" />
+	<int:channel id="udpChannel_20203" />
+	<int:channel id="udpChannel_20204" />
+	<int:channel id="udpChannel_20205" />
+	<int:channel id="udpChannel_20206" />
+
+	<int-ip:udp-outbound-channel-adapter channel="udpChannel_20200" host="127.0.0.1" port="20200" />
+	<int-ip:udp-outbound-channel-adapter channel="udpChannel_20201" host="134.246.151.255" port="20201" />
+	<int-ip:udp-outbound-channel-adapter channel="udpChannel_20202" host="127.0.0.1" port="20202" />
+	<int-ip:udp-outbound-channel-adapter channel="udpChannel_20203" host="127.0.0.1" port="20203" />
+	<int-ip:udp-outbound-channel-adapter channel="udpChannel_20204" host="127.0.0.1" port="20204" />
+	<int-ip:udp-outbound-channel-adapter channel="udpChannel_20205" host="127.0.0.1" port="20205" />
+	<int-ip:udp-outbound-channel-adapter channel="udpChannel_20206" host="127.0.0.1" port="20206" />
+
+</beans>

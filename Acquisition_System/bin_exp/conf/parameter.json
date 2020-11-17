@@ -1,0 +1,121 @@
+{
+  "databaseIP": "localhost",
+  "brokerIP": "localhost",
+  "viewList": [
+    {"type": "Debug", "role": "ROLE_ADMIN"},
+    {"type": "Devices"},
+    {"type": "Empty"},
+    {"type": "Graphics"},
+    {"type": "ADCP", "frameName": "watercurrentvelocity"},
+    {"type": "Attitude", "frameName": "shipattitude"},
+    {"type": "Depth", "frameName": "shipnav", "devicePattern": "TL_SHIPNAV"},
+    {"type": "Depth", "frameName": "sb_depth"},
+    {"type": "Funes winch", "frameName": "funeswinch"},
+    {"type": "Funes winch", "frameName": "TEST"},
+    {"type": "GPS", "frameName": "position"},
+    {"type": "GPS", "frameName": "TEST"},
+    {"type": "Haul composition", "frameName": "bltnk"},
+    {"type": "Haul composition", "frameName": "TEST"},
+    {
+      "type": "Map", "frameName": "shipnav", "devicePattern": "TL_SHIPNAV", "weatherId": "TL_BATOS",
+      "config": {"ship": {"length": 107.6, "beam": 20, "xOffset": 10, "yOffset": 50, "lengthVector": 15}}
+    },
+    {"type": "Navigation", "frameName": "shipnav", "devicePattern": "TL_SHIPNAV"},
+    {"type": "Numerical"},
+    {"type": "SMF", "frameName": "bathymetry"},
+    {"type": "SMF", "frameName": "TEST"},
+    {"type": "Species", "frameName": "TEST"},
+    {"type": "Species", "frameName": "blcar"},
+    {
+      "type": "Station", "frameName": "shipnav", "devicePattern": "TL_SHIPNAV", "weatherId": "TL_BATOS",
+      "config": {"ship": {"length": 107.6, "beam": 20, "xOffset": 10, "yOffset": 50, "lengthVector": 15}}
+    },
+    {"type": "Thermosal", "frameName": "hydrology", "config": {"flowDeviceId": "TL_FLOW_SBE"}},
+    {"type": "Trawl", "frameName": "trawl"},
+    {"type": "Weather", "frameName": "weather", "navId": "TL_SHIPNAV"},
+    {"type": "Winch", "frameName": "winch"},
+    {"type": "Winch", "frameName": "TEST"},
+    {"type": "Propulsion", "frameName": "TEST"}
+  ],
+  "video": {
+    "mosaic": {"url": "http://134.246.151.91:8080/mosaic.jpeg", "size": 16},
+    "list": [
+      {"title": "video.port-quarterdeck", "url": "http://134.246.151.91:8080/stream/channel1.m3u8"},
+      {"title": "video.general-surveillance", "url": "http://134.246.151.91:8080/stream/channel2.m3u8"},
+      {"title": "video.after-gantry-ROV", "url": "http://134.246.151.91:8080/stream/channel3.m3u8"},
+      {"title": "video.starboard-trawl-door", "url": "http://134.246.151.91:8080/stream/channel4.m3u8"},
+      {"title": "video.port-trawl-door", "url": "http://134.246.151.91:8080/stream/channel5.m3u8"},
+      {"title": "video.CTD-passageway", "url": "http://134.246.151.91:8080/stream/channel6.m3u8"},
+      {"title": "video.port-gangway", "url": "http://134.246.151.91:8080/stream/channel7.m3u8"},
+      {"title": "video.CTD-winch", "url": "http://134.246.151.91:8080/stream/channel8.m3u8"},
+      {"title": "video.hydrology-winch", "url": "http://134.246.151.91:8080/stream/channel9.m3u8"},
+      {"title": "video.bridle-winch", "url": "http://134.246.151.91:8080/stream/channel10.m3u8"},
+      {"title": "video.drum", "url": "http://134.246.151.91:8080/stream/channel11.m3u8"},
+      {"title": "video.after-fish-sorting-room", "url": "http://134.246.151.91:8080/stream/channel12.m3u8"},
+      {"title": "video.forward-fish-sorting-room", "url": "http://134.246.151.91:8080/stream/channel13.m3u8"},
+      {"title": "video.machine", "url": "http://134.246.151.91:8080/stream/channel14.m3u8"},
+      {"title": "video.port-U-passageway", "url": "http://134.246.151.91:8080/stream/channel15.m3u8"},
+      {"title": "video.starboard-U-passageway", "url": "http://134.246.151.91:8080/stream/channel16.m3u8"},
+      {"title": "video.shaft-line", "url": "http://134.246.151.91:8080/stream/channel17.m3u8"},
+      {"title": "video.starboard-quarterdeck", "url": "http://134.246.151.91:8080/stream/channel18.m3u8"},
+      {"title": "video.crows-nest", "url": "http://134.246.151.91:8080/stream/channel19.m3u8"},
+      {"title": "video.vehicle-1", "url": "http://134.246.151.91:8080/stream/channel20.m3u8"},
+      {"title": "video.vehicle-2", "url": "http://134.246.151.91:8080/stream/channel21.m3u8"}
+    ]
+  },
+  "defaultDashboard": [
+    {"id": 1, "sizeX": 6, "sizeY": 9, "row": 0, "col": 0, "type": "Navigation", "config": {"deviceId": "TL_SHIPNAV", "frameId": "shipnav"}},
+    {
+      "id": 2, "sizeX": 6, "sizeY": 9, "row": 0, "col": 6, "type": "Map", "config": {
+      "mode": "navigation", "deviceId": "TL_SHIPNAV", "frameId": "shipnav", "weatherDeviceId": "TL_BATOS",
+      "ship": {"length": 107.6, "beam": 20, "xOffset": 10, "yOffset": 50, "lengthVector": 15}
+    }
+    },
+    {
+      "id": 4, "sizeX": 6, "sizeY": 9, "row": 9, "col": 0, "type": "Weather",
+      "config": {"deviceId": "TL_BATOS", "frameId": "weather", "navId": "TL_SHIPNAV"}
+    },
+    {
+      "id": 3, "sizeX": 6, "sizeY": 9, "row": 9, "col": 6, "type": "Thermosal",
+      "config": {"deviceId": "TL_SBE", "frameId": "hydrology", "flowDeviceId": "TL_FLOW_SBE"}
+    }
+  ],
+  "defaultStaticGrid": [
+    [
+      {
+        "id": "1", "type": "Navigation", "config": {"deviceId": "TL_SHIPNAV", "frameId": "shipnav"}
+      },
+      {
+        "id": "2", "type": "Map", "config": {
+        "mode": "navigation", "deviceId": "TL_SHIPNAV", "frameId": "shipnav", "weatherDeviceId": "TL_BATOS",
+        "ship": {"length": 107.6, "beam": 20, "xOffset": 10, "yOffset": 50, "lengthVector": 15}
+      }
+      },
+      {"id": "3", "type": "Devices"}
+    ], [
+      {"id": "4", "type": "Weather", "config": {"deviceId": "TL_BATOS", "frameId": "weather", "navId": "TL_SHIPNAV"}},
+      {
+        "id": "5", "type": "Thermosal",
+        "config": {"deviceId": "TL_SBE", "frameId": "hydrology", "flowDeviceId": "TL_FLOW_SBE"}
+      },
+      {"id": "6"}
+    ]
+  ],
+  "dataAccessLists": {
+    "navigation": [
+      {"deviceId": "TL_SHIPNAV", "frameId": "shipnav", "id": "lat", "colname": "Lat"},
+      {"deviceId": "TL_SHIPNAV", "frameId": "shipnav", "id": "long", "colname": "Long"},
+      {"deviceId": "TL_SHIPNAV", "frameId": "shipnav", "id": "heading", "colname": "Heading"},
+      {"deviceId": "TL_SHIPNAV", "frameId": "shipnav", "id": "depth", "colname": "Sounder"},
+      {"deviceId": "TL_SHIPNAV", "frameId": "shipnav", "id": "gndspeed", "colname": "Ground speed"},
+      {"deviceId": "TL_SHIPNAV", "frameId": "shipnav", "id": "gndcourse", "colname": "Ground course"}
+    ],
+    "weather": [
+      {"deviceId": "TL_BATOS", "frameId": "weather", "id": "trueairspeed", "colname": "Air speed"},
+      {"deviceId": "TL_BATOS", "frameId": "weather", "id": "trueairheading", "colname": "Air heading"},
+      {"deviceId": "TL_BATOS", "frameId": "weather", "id": "relairspeed", "colname": "Rel air speed"},
+      {"deviceId": "TL_BATOS", "frameId": "weather", "id": "relairheading", "colname": "Rel air heading"}
+    ],
+    "thermosal": []
+  }
+}

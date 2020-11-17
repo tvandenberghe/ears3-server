@@ -1,0 +1,331 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# ===================================================================
+
+# ===================================================================
+# TECHSAS-NG specific properties
+# ===================================================================
+#Profile to activate eurofleets jpa repository
+#spring:
+#  profiles:
+#    active: "eurofleets"
+
+#Profile to activate the old frontend
+spring:
+    profiles:
+        active: "eurofleets"
+security:
+    basic:
+        enabled: false
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+    main:
+        web-environment: true
+        show_banner: false
+    mvc:
+        favicon:
+            enabled: false
+#    jpa:
+#        show-sql: true
+#        hibernate:
+#            ddl-auto: create-drop
+# ===================================================================
+# TECHSAS-NG specific properties
+# ===================================================================
+# Enabled web components
+acquisition:
+    description:
+        enabled: true
+        url: "http://localhost:8080/api/descriptions/"
+    channel:
+        url: "http://localhost:8080/api/channels/"
+    client:
+        enabled: true
+    broker:
+        topics:
+            configuration: "configuration.json"
+            status: "status.json"
+            log: "log.json"
+            heartbeat: "heartbeat"
+            rawSuffix: ".raw"
+            jsonSuffix: ".json"
+
+# .. configuration service
+    configuration:
+        interval: 20000
+# .. ntp status
+    status:
+        interval: 2000
+    ntp:
+        interval: 30000
+        host: "time-nw.nist.gov"
+        offset: 1000
+        delay: 1000
+    sdiv:
+        parameter:
+            file: "parameter.json"
+
+# .. data visualization API
+    visualization:
+        maxNumValues: 10000
+# .. .. milliseconds to consider data around a date in reference timestamping strategy
+        timestamping:
+            reference:
+                range: 500
+            predefined:
+                range: 500
+
+# .. .. interval between which criterias must be cleared
+        criteria:
+            clearinterval: 1000
+# .. .. criterias with more than ttl are removed (default 30 minutes)
+            ttl: 1800000
+
+# .. drivers
+    device:
+        heartbeat:
+            interval: 10000
+        tcp:
+            autoreconnect:
+                interval: 1000
+
+# .. cross origins
+    cross:
+        origins: "*"
+
+# meta common format device
+    metacommonformatdriver:
+        enabled: false
+        deviceIds:
+
+
+#authentication ldap
+authentication:
+    ldap:
+        enabled: false
+        url: "ldap://ldap.ifremer.fr:389/dc=ifremer,dc=fr"
+        ou: "annuaire"
+#authentication user list
+    users:
+        -   login: "admin"
+            password: "secret"
+            name: "Admin"
+            roles :
+                - "ROLE_ADMIN"
+                - "ROLE_USER"
+        -   login: "techsas"
+            password: "techsas"
+            name: "Techsas"
+            roles : "ROLE_ADMIN"
+        -   login: "user"
+            password: "password"
+            name: "User"
+            roles : "ROLE_USER"
+        -   login: "user1"
+            password: "password"
+            name: "User1"
+            roles : "ROLE_USER"
+        -   login: "sdivPcScience"
+            password: "sdiv"
+            name: "Sdiv PC Science"
+            roles : "ROLE_SDIV"
+
+# eurofleets db
+eurofleets:
+    db:
+        datasource:
+            url: "jdbc:mysql://192.168.13.34:3306/casino"
+            username: "root"
+            password: "root"
+            driverClassName: "com.mysql.jdbc.Driver"
+
+# ===================================================================
+# Dev profile
+# ===================================================================
+
+---
+
+spring:
+    profiles: eurofleets
+    data:
+        mongodb:
+            host: "localhost"
+            port: 27017
+eurofleets:
+    navigation:
+        deviceId: "PSDGPOS01"
+        frameName: "PSDGPOS"
+        dateId: "date"
+        timeId: "time"
+        longitudeId: "long"
+        latitudeId: "lat"
+        headingId: "head"
+        speedId: "speed"
+        depthId: "depth"
+        sogId: "sog"
+        cogId: "cog"
+        boundingBoxActivity:
+           boundingBox: "BOX(3.1814 51.3589, 3.2065 51.3707)" 
+           activity: "/home/thomas/ears_test.sh" #/usr/bin/ears.sh stop
+           heading: "90, 270"
+    weather:
+        deviceId: "PSDGMET01"
+        frameName: "PSDGMET"
+        dateId: "date"
+        timeId: "time"
+        velocityId: "velocity"
+        gustId: "gust"
+        directionId: "direction"
+        airTemperatureId: "airtemp"
+        humidityId: "humidity"
+        solarRadiationId: "radiation"
+        airPressureId: "pressure"
+    thermo:
+        deviceId: "PSDGTSS01"
+        frameName: "PSDGTSS"
+        dateId: "date"
+        timeId: "time"    
+        watertempId: "watertemp"
+        salinityId: "salinity"
+        sigmatId: "sigmat"
+        conductId: "conduct"
+        fluoId: "fluo"
+    underway:
+        deviceId: "GSDGAUM01"
+        frameName: "GSDGAUM"
+        dateId: "date"
+        timeId: "time"  
+        turbidityLId: "turbidityL"
+        turbidityHId: "turbidityH"
+        obsLId: "obsL"
+        obsHId: "obsH"
+        salinityId: "salinity"
+        chlorophyllId: "chlorophyll"
+        blueAlgaeId: "blueAlgae"
+        cdomId: "cdom"
+        phId: "ph"
+        fluorescenceId: "fluorescence"
+        pco2Id: "pco2"
+        parId: "par"
+acquisition:
+    broker:
+        enabled: true
+        url: "vm://broker?create=false"
+        listenURIs:
+            - "tcp://0.0.0.0:61616"
+            - "ws://0.0.0.0:61614"
+            - "mqtt://0.0.0.0:61222"
+# .. archiving service
+    archiving:
+        initialCruiseName: "test"
+        subServices:
+            - raw
+            - netcdf
+            - db
+        raw:
+            file: "./cruises/{cruiseName}/raw/{sensor}/{sensor}-{date,yyyy-MMdd-HH}.log"
+            frame:
+                header: "{date,yyyy-MM-dd'T'HH:mm:ss.SSS'Z'},"
+                separator: "\n"
+        netcdf:
+            file: "./cruises/{cruiseName}/netcdf/{sensor}/{sensor}-{frame}-{date,yyyy-MMdd-HH}.nc"
+        blacklist:
+            - TL_EM302
+            - TL_EK80_70k
+db:
+    enabled: true
+    datasource:
+        url: "jdbc:h2:file:./cruises/test/archive;MVCC=TRUE;MV_STORE=FALSE"
+        username: "sa"
+        password: "sa"
+        driverClassName: "org.h2.Driver"
+mongo:
+    enabled: false
+    database: "cruises"
+
+# ===================================================================
+# Acquisition profile
+# ===================================================================
+
+---
+
+spring:
+    profiles: acquisition
+    data:
+        mongodb:
+            host: "134.246.151.40"
+            port: 27017
+
+acquisition:
+    broker:
+        enabled: false
+        url: "failover:(tcp://134.246.151.40:61616)"
+# .. archiving service
+    archiving:
+        initialCruiseName: "test"
+        subServices:
+            - raw
+            - netcdf
+        raw:
+            file: "./cruises/{cruiseName}/raw/{sensor}/{sensor}-{date,yyyy-MMdd-HH}.log"
+            frame:
+                header: "{date,yyyy-MM-dd'T'HH:mm:ss.SSS'Z'},"
+                separator: "\n"
+        netcdf:
+            file: "./cruises/{cruiseName}/netcdf/{sensor}/{sensor}-{frame}-{date,yyyy-MMdd-HH}.nc"
+        blacklist:
+            - TL_EM302
+            - TL_EK80_70k
+db:
+    enabled: false
+    datasource:
+        url: "jdbc:mariadb://134.246.151.40/cruises"
+        username: "techsas"
+        password: "techsas"
+        driverClassName: "org.mariadb.jdbc.Driver"
+mongo:
+    enabled: false
+    database: "cruises"
+
+# ===================================================================
+# Database profile
+# ===================================================================
+
+---
+
+spring:
+    profiles: database
+    data:
+        mongodb:
+            host: "134.246.151.40"
+            port: 27017
+acquisition:
+    broker:
+        enabled: false
+        url: "vm://broker?create=false"
+        listenURIs:
+# .. archiving service
+    archiving:
+        initialCruiseName: "test"
+        subServices:
+            - db
+        blacklist:
+            - TL_EM302
+            - TL_EK80_70k
+db:
+    enabled: false
+    datasource:
+        url: "jdbc:mariadb://134.246.151.40/cruises"
+        username: "techsas"
+        password: "techsas"
+        driverClassName: "org.mariadb.jdbc.Driver"
+mongo:
+    enabled: false
+    database: "cruises"
+
+
+

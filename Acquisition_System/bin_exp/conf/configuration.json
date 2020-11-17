@@ -1,0 +1,399 @@
+
+
+{
+    "channels": [
+        {
+            "channelId": "PSDGPOS01",
+            "url": "udp:\/\/0.0.0.0:3101"
+        },
+        {
+            "channelId": "PSDGMET01",
+            "url": "udp:\/\/0.0.0.0:3102"
+        },
+        {
+            "channelId": "PSDGTSS01",
+            "url": "udp:\/\/0.0.0.0:3103"
+        },
+        {
+            "channelId": "GSDGAUM01",
+            "url": "udp:\/\/0.0.0.0:3104"
+        }
+    ],
+    "devices": [
+        {
+            "deviceId": "PSDGPOS01",
+            "name": "PSDGPOS",
+            "period": 1000,
+            "frames": [
+                {
+                    "name": "date"
+                }, 
+                {
+                    "name": "time"
+                },
+                {
+                    "name": "long"
+                },
+                {
+                    "name": "lat"
+                },
+                {
+                    "name": "head"
+                },
+                {
+                    "name": "speed"
+                },
+                {
+                    "name": "depth"
+                },
+                {
+                    "name": "cog"
+                },
+                {
+                    "name": "sog"
+                }, 
+                {
+                    "name": "measureTS"
+                }
+            ],
+            "drivers": [
+                {
+                    "channelId": "PSDGPOS01",
+                    "driverId": "PSDGPOS01",
+                    "driverClassName": "fr.ifremer.acquisition.device.driver.impl.nmea.PSDGPOSDriver",
+                    "header": "$PSDGPOS",
+                    "fields": [
+                        {
+                            "frame": "date",
+                            "fieldIndex": 1
+                        },
+                        {
+                            "frame": "time",
+                            "fieldIndex": 2
+                        },
+                        {
+                            "frame": "long",
+                            "fieldIndex": 3
+                        },
+                        {
+                            "frame": "lat",
+                            "fieldIndex": 4
+                        },
+                        {
+                            "frame": "head",
+                            "fieldIndex": 5
+                        },
+                        {
+                            "frame": "speed",
+                            "fieldIndex": 6
+                        },
+                        {
+                            "frame": "depth",
+                            "fieldIndex": 7
+                        },
+                        {
+                            "frame": "cog",
+                            "fieldIndex": 8
+                        },
+                        {
+                            "frame": "sog",
+                            "fieldIndex": 9
+                        }],
+                    "parameters": {
+                        "separator": ","
+                    }
+                }
+            ],
+            "triggerMode": "TIME",
+            "triggerInterval": 1000,
+            "triggerFrameName": "$PSDGPOS"
+        },
+        {
+            "deviceId": "PSDGMET01",
+            "name": "PSDGMET",
+            "period": 1000,
+            "frames": [
+                {
+                    "name": "date"
+                },
+                {
+                    "name": "time"
+                },
+                {
+                    "name": "velocity"
+                },
+                {
+                    "name": "gust"
+                },
+                {
+                    "name": "direction"
+                },
+                {
+                    "name": "airtemp"
+                },
+                {
+                    "name": "humidity"
+                },
+                {
+                    "name": "radiation"
+                },
+                {
+                    "name": "pressure"
+                }
+            ],
+            "drivers": [
+                {
+                    "channelId": "PSDGMET01",
+                    "driverId": "PSDGMET01",
+                    "driverClassName": "fr.ifremer.acquisition.device.driver.impl.nmea.PSDGMETDriver",
+                    "header": "$PSDGMET",
+                    "fields": [
+                        {
+                            "frame": "date",
+                            "fieldIndex": 1
+                        },
+                        {
+                            "frame": "time",
+                            "fieldIndex": 2
+                        },
+                        {
+                            "frame": "velocity",
+                            "fieldIndex": 3
+                        },
+                        {
+                            "frame": "gust",
+                            "fieldIndex": 4
+                        },
+                        {
+                            "frame": "direction",
+                            "fieldIndex": 5
+                        },
+                        {
+                            "frame": "airtemp",
+                            "fieldIndex": 6
+                        },
+                        {
+                            "frame": "humidity",
+                            "fieldIndex": 7
+                        },
+                        {
+                            "frame": "radiation",
+                            "fieldIndex": 8
+                        },
+                        {
+                            "frame": "pressure",
+                            "fieldIndex": 9
+                        },
+                        {
+                            "frame": "watertemp",
+                            "fieldIndex": 10
+                        }
+                    ],
+                    "parameters": {
+                        "separator": ","
+                    }
+                }
+            ],
+            "triggerMode": "frame",
+            "triggerInterval": 1000,
+            "triggerFrameName": "$PSDGMET"
+        },
+        {
+            "deviceId": "PSDGTSS01",
+            "name": "PSDGTSS",
+            "period": 1000,
+            "frames": [
+                {
+                    "name": "date"
+                },
+                {
+                    "name": "time"
+                },
+                {
+                    "name": "watertemp"
+                }, 
+                {
+                    "name": "salinity"
+                },
+                {
+                    "name": "sigmat"
+                },
+                {
+                    "name": "conduct"
+                },
+                {
+                    "name": "fluo"
+                }
+            ],
+            "drivers": [
+                {
+                    "channelId": "PSDGTSS01",
+                    "driverId": "PSDGTSS01",
+                    "driverClassName": "fr.ifremer.acquisition.device.driver.impl.nmea.PSDGTSSDriver",
+                    "header": "$PSDGTSS",
+                    "fields": [
+                        {
+                            "frame": "date",
+                            "fieldIndex": 1
+                        },
+                        {
+                            "frame": "time",
+                            "fieldIndex": 2
+                        },
+                        {
+                            "frame": "watertemp",
+                            "fieldIndex": 3
+                        },
+                        {
+                            "frame": "salinity",
+                            "fieldIndex": 4
+                        },
+                        {
+                            "frame": "sigmat",
+                            "fieldIndex": 5
+                        },
+                        {
+                            "frame": "conduct",
+                            "fieldIndex": 6
+                        },
+                        {
+                            "frame": "fluo",
+                            "fieldIndex": 7
+                        }
+
+                    ],
+                    "parameters": {
+                        "separator": ","
+                    }
+                }
+            ],
+            "triggerMode": "frame",
+            "triggerInterval": 1000,
+            "triggerFrameName": "$PSDGTSS"
+        },
+        {
+            "deviceId": "GSDGAUM01",
+            "name": "GSDGAUM",
+            "period": 1000,
+            "frames": [
+                {
+                    "name": "date"
+                },
+                {
+                    "name": "time"
+                },
+                {
+                    "name": "turbidityL"
+                }, 
+                {
+                    "name": "turbidityH"
+                },
+                {
+                    "name": "obsL"
+                },
+                {
+                    "name": "obsH"
+                },
+                {
+                    "name": "salinity"
+                },
+                {
+                    "name": "chlorophyll"
+                },
+                {
+                    "name": "blueAlgae"
+                },
+                {
+                    "name": "cdom"
+                },
+                {
+                    "name": "ph"
+                },
+                {
+                    "name": "fluorescence"
+                },
+                {
+                    "name": "pco2"
+                },
+                {
+                    "name": "par"
+                }
+            ],
+            "drivers": [
+                {
+                    "channelId": "GSDGAUM01",
+                    "driverId": "GSDGAUM01",
+                    "driverClassName": "fr.ifremer.acquisition.device.driver.impl.nmea.GSDGAUMDriver",
+                    "header": "$GSDGAUM",
+                    "fields": [
+                        {
+                            "frame": "date",
+                            "fieldIndex": 1
+                        },
+                        {
+                            "frame": "time",
+                            "fieldIndex": 2
+                        },
+                        {
+                            "frame": "turbidityL",
+                            "fieldIndex": 3
+                        },
+                        {
+                            "frame": "turbidityH",
+                            "fieldIndex": 4
+                        },
+                        {
+                            "frame": "obsL",
+                            "fieldIndex": 5
+                        },
+                        {
+                            "frame": "obsH",
+                            "fieldIndex": 6
+                        },
+                        {
+                            "frame": "salinity",
+                            "fieldIndex": 7
+                        },
+                        {
+                            "frame": "chlorophyll",
+                            "fieldIndex": 8
+                        },
+                        {
+                            "frame": "blueAlgae",
+                            "fieldIndex": 9
+                        },
+                        {
+                            "frame": "cdom",
+                            "fieldIndex": 10
+                        },
+                        {
+                            "frame": "ph",
+                            "fieldIndex": 11
+                        },
+                        {
+                            "frame": "fluorescence",
+                            "fieldIndex": 12
+                        },
+                        {
+                            "frame": "pco2",
+                            "fieldIndex": 13
+                        },
+                        {
+                            "frame": "par",
+                            "fieldIndex": 14
+                        }
+
+                    ],
+                    "parameters": {
+                        "separator": ","
+                    }
+                }
+            ],
+            "triggerMode": "frame",
+            "triggerInterval": 1000,
+            "triggerFrameName": "$GSDGAUM"
+        }
+
+    ]
+}
+
