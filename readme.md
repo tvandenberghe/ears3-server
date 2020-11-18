@@ -178,10 +178,9 @@ The -d flag starts the container based on the image in a detached mode, meaning 
 
 When you run the image, the different components are started in certain order. The web server (tomcat) is the latest as it has to wait for the database to be completed. Wait at least a minute, then visit the following addresses in your web browser:
 
+```
 http://localhost:8181/ears3/html/event
-
 http://localhost:8181/ears3/events
-
 http://localhost:8181/ears3Nav/tss/getLast/xml
 http://localhost:8181/ears3Nav/tss/getLast/datagram
 http://localhost:8181/ears3Nav/tss/getLast/json
@@ -212,8 +211,8 @@ http://localhost:8181/ears3Nav/nav/getBetween/xml?startDate=2020-08-18T00:00:00Z
 http://localhost:8181/ears3Nav/nav/getBetween/json?startDate=2020-08-18T00:00:00Z&endDate=2021-06-25T08:39:00Z
 http://localhost:8181/ears3Nav/nav/getBetween/datagram?startDate=2020-08-18T00:00:00Z&endDate=2021-06-25T08:39:00Z
 
-http://localhost:8080 for the acquisition server
-
+http://localhost:8080
+```
 Replace localhost:8080 localhost:8181 with the server&#39;s IP adress and the actual port you have configured (see lower).
 
 Make sure that the server is accessible from the network.

@@ -1,12 +1,11 @@
-# This setup creates a Tomcat container for the EARS webservices, a Tomcat containber for the acquisition module and a MySQL container. If this is the first run it populates it with the needed tables. 
+# This setup creates a Tomcat container for the EARS webservices, a Tomcat containber for the acquisition module, plus MySQL and Postgres containers. If this is the first run it populates the databases with the needed tables. 
 # The computer they are run from is called the host.
 # The tomcat container depends on the mysql one (see the depends_on keyword). 
-# The tomcat main command (catalina.sh) is not run before the MySQL database is populated; this is done via the wait_for_mysql.sh script. 
-# Both containers share the same IP address (localhost). This is done as localhost is hardcoded inside the swing java code 
-# The SQL data is persisted outside of the MySQL container
+# The tomcat main command (catalina.sh) is not run before the databases is populated; this is done via the wait_for_mysql.sh script. 
+# The SQL data is persisted outside of the containers in volume directories (ears_mysql_data and ears_postgres_data)
 # The 'restart: always' keywords ensure that both services are restarted always after each crash or system reboot, as long as the docker daemon is running. sudo docker stop <id> will actually stop the application, and it will not be restarted automatically.
 # The container names are stored as ears-server_tomcat, ears-server_mysql and ears-server_acquisition. These can be used in your docker host to see the logs or get info: eg. sudo docker logs ears-server_acquisition or sudo docker inspect ears-server_mysql
-# The EARS webservices are reachable on http://localhost and the acquisition server on http://localhost:8080
+# The EARS webservices are reachable on http://localhost:8181 and the acquisition server on http://localhost:8080
 version: '3.5'
 services:
   tomcat:
@@ -35,8 +34,6 @@ services:
     depends_on:
       - mysql
       - postgres
-    #network_mode: host # "service:mysql" 
-# needed because tomcat and mysql need to be on the same server container
     command: ["./wait-for-mysql.sh", mysql, "3306", "root", "wzka684l7i", "casino", "catalina.sh", "run"]
     restart: always
     volumes:
@@ -50,7 +47,6 @@ services:
     container_name: ears-server_mysql
     ports:
       - 3307:3306
-#      - ${EARS_PORT}:8080
     environment:
       - MYSQL_DATABASE=casino
       - MYSQL_ROOT_PASSWORD=wzka684l7i
@@ -59,23 +55,20 @@ services:
       - MYSQL_USER=casino
     volumes:
       - ./ears_acquisition_ddl.sql:/docker-entrypoint-initdb.d/ears_acquisition_ddl.sql
-#      - ./ears_mysql_data:/var/lib/mysql
+      - ./ears_mysql_data:/var/lib/mysql
     restart: always
   postgres:
     image: postgres:12.5-alpine
     container_name: ears-server_postgres
     ports:
       - 6543:5432
-#      - ${EARS_PORT}:8080
     environment:
       - POSTGRES_DB=ears3
-#      - POSTGRES_ROOT_PASSWORD=wzka684l7i
-#      - POSTGRES_ROOT_HOST=localhost
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
     volumes:
       - ./ears_base_ddl.sql:/docker-entrypoint-initdb.d/ears_base_ddl.sql
-#      - ./ears_postgres_data:/var/lib/postgresql
+      - ./ears_postgres_data:/var/lib/postgresql
     restart: always
   acquisition:
     build:
