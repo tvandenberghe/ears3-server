@@ -43,9 +43,7 @@ Speed over ground in kn
 
 _ **Example:** _
 
-$PSDGPOS,131017,132035,3.01803,51.44738,216.2,8.9,
-
--27.7,215.4,8.7
+$PSDGPOS,131017,132035,3.01803,51.44738,216.2,8.9,-27.7,215.4,8.7
 
 **Datagram description thermosalinograph data (TSS):**
 
