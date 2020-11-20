@@ -174,6 +174,8 @@ sudo docker-compose build
 sudo docker-compose up -d
 ```
 
+For your convenience you can also just run `./run.sh`.
+ 
 The -d flag starts the container based on the image in a detached mode, meaning that you can continue the terminal session. If you shutdown and reboot the server that hosts the EARS server container, the container will always restart along with the whole server.
 
 When you run the image, the different components are started in certain order. The web server (tomcat) is the latest as it has to wait for the database to be completed. Wait at least a minute, then visit the following addresses in your web browser:
@@ -220,6 +222,11 @@ Make sure that the server is accessible from the network.
 ## Adresses and ports
 
 The EARS webservices are reachable on [http://localhost:818](http://localhost:8080/)1 and the acquisition server on [http://localhost:808](http://localhost:8080/)0, by default. You can modify these ports in the .env file but this is not recommended. If a port is already taken, you either change the port in the .env file, or preferrably kill the application that takes the port. In order to find applications using a port, use eg. `sudo netstat -tulpn | grep 8080`, note the pid in the last column and then `sudo kill <pid>`
+
+## Usage
+Go to `http://localhost:8181/ears3/html/event` to manage the programs and cruises and to create new events. You are first prompted to provide your name and email address. Please note that for the time being the event fields are populated with the ontology from the RV Belgica. This will be changed in the near future. A new vessel ontology file can be saved in the ontologies directory and the changes will be immediately visible in the event creation interface.
+
+Go to `http://localhost:8080` for the acquisition.
 
 ## View the database, e.g. with MySQL Workbench
 

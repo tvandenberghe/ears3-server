@@ -2,3 +2,4 @@ ears_mysql_data
 ears_postgres_data
 netcdf
 Acquisition_System/bin/log
+deploy.sh

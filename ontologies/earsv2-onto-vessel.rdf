@@ -6560,7 +6560,7 @@
         <dc:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SeaVox (BODC/SDN)</dc:publisher>
         <skos:altLabel xml:lang="en"></skos:altLabel>
         <skos:definition xml:lang="en">A package lowered and raised vertically from a surface platform, usually a ship, always carrying pressure, temperature and conductivity sensors. Addional optional sensors include fluorometers, transmissometers and radiometers.  The package may also carry water bottles.</skos:definition>
-        <skos:prefLabel xml:lang="en">CTD</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">CTD-THISWORKS</skos:prefLabel>
     </owl:NamedIndividual>
     
 
