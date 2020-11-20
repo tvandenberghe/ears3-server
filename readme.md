@@ -187,14 +187,17 @@ Replace localhost:8080 localhost:8181 with the server&#39;s IP adress and the ac
 
 Make sure that the server is accessible from the network.
 
-## Adresses and ports
+## Adresses, ports and environment variables
 
 The EARS webservices are reachable on [http://localhost:8181](http://localhost:8181) and the acquisition server on [http://localhost:8080](http://localhost:8080), by default. You can modify these ports in the .env file but this is not recommended. If a port is already taken, you either change the port in the .env file, or preferrably kill the application that takes the port. In order to find applications using a port, use eg. `sudo netstat -tulpn | grep 8080`, note the pid in the last column and then `sudo kill <pid>`
+
+You have to change the RV identifier in the .env file. Please change EARS_PLATFORM=SDN:C17::11BE to the C17 (ICES) code of the RV this software will be run on. The C17 codes are here: http://vocab.nerc.ac.uk/collection/C17/current/
 
 ## Usage
 
 Go to `http://localhost:8181/ears3/html/event` or simply `http://localhost:8181/ears3` to manage the programs and cruises and to create new events. You are first prompted to provide your name and email address. Please note that for the time being the event fields are populated with the ontology from the RV Belgica. This will be changed in the near future. A new vessel ontology file can be saved in the ontologies directory and the changes will be immediately visible in the event creation interface.
-
+Go to `http://localhost:8181/ears3/sml?platformUrn=SDN:C17::11BE` to see the Sensor ML for the whole ship. Follow the links for the events of specific devices.
+Go to `http://localhost:8181/ears3/cruise/csr?identifier=cruise_identifier` to see the a full SDN Cruise Summary Report. IT is not yet possible to create Cruises via the interface. 
 Go to `http://localhost:8080` for the acquisition.
 
 ## View the database, e.g. with MySQL Workbench
