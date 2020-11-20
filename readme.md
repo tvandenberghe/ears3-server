@@ -150,22 +150,9 @@ Go to where you want to install the docker container. The location has no specia
 
 ```
 cd <installation directory>
-git clone https://github.com/naturalsciences/ears-server.git
+git clone https://github.com/tvandenberghe/ears3-server.git
 cd ears-server
 ```
-
-## Change the username and password to modify the vessel ontology
-
-Only to save the vessel ontology a password and username is needed. This username and password needs to be provided in the options of the EARS front-end application as well. This step is optional but essential if you want to protect the vessel ontology (else the password &#39;REPLACEME&#39; remains the default).
-
-Modify these lines in the Dockerfile to your username and password:
-
-```
-RUN echo 'be.naturalsciences.bmdc.ears.ontology.rest.username=earsontology' > /etc/.java/ears.properties
-RUN echo 'be.naturalsciences.bmdc.ears.ontology.rest.password=REPLACEME' >> /etc/.java/ears.properties
-```
-
-If you modify the Dockerfile, or any file except the docker-compose.yml file for that matter, you will need to rebuild the image(``sudo docker-compose build``).
 
 ## Create the docker container and run the image
 
@@ -221,10 +208,11 @@ Make sure that the server is accessible from the network.
 
 ## Adresses and ports
 
-The EARS webservices are reachable on [http://localhost:818](http://localhost:8080/)1 and the acquisition server on [http://localhost:808](http://localhost:8080/)0, by default. You can modify these ports in the .env file but this is not recommended. If a port is already taken, you either change the port in the .env file, or preferrably kill the application that takes the port. In order to find applications using a port, use eg. `sudo netstat -tulpn | grep 8080`, note the pid in the last column and then `sudo kill <pid>`
+The EARS webservices are reachable on [http://localhost:8181](http://localhost:8181) and the acquisition server on [http://localhost:8080](http://localhost:8080), by default. You can modify these ports in the .env file but this is not recommended. If a port is already taken, you either change the port in the .env file, or preferrably kill the application that takes the port. In order to find applications using a port, use eg. `sudo netstat -tulpn | grep 8080`, note the pid in the last column and then `sudo kill <pid>`
 
 ## Usage
-Go to `http://localhost:8181/ears3/html/event` to manage the programs and cruises and to create new events. You are first prompted to provide your name and email address. Please note that for the time being the event fields are populated with the ontology from the RV Belgica. This will be changed in the near future. A new vessel ontology file can be saved in the ontologies directory and the changes will be immediately visible in the event creation interface.
+
+Go to `http://localhost:8181/ears3/html/event` or simply `http://localhost:8181/ears3` to manage the programs and cruises and to create new events. You are first prompted to provide your name and email address. Please note that for the time being the event fields are populated with the ontology from the RV Belgica. This will be changed in the near future. A new vessel ontology file can be saved in the ontologies directory and the changes will be immediately visible in the event creation interface.
 
 Go to `http://localhost:8080` for the acquisition.
 
@@ -295,13 +283,11 @@ nohup java -jar FileToUDP/FileToUDP.jar FileToUDP/09022016.posicion.raw  3101 1 
 nohup java -jar FileToUDP/FileToUDP.jar FileToUDP/08052016.meteo.raw  3102 1 > ~/filetoudp.log 2>&1 &
 nohup java -jar FileToUDP/FileToUDP.jar FileToUDP/09052016.termosal.raw 3103 1 > ~/filetoudp.log 2>&1 &
 ```
-
 Inspect this actually is received by the acqusion module by reading the log output of docker for it:
 
 ```
 sudo docker logs ears-server_acquisition
 ```
-
 The data is also saved as NetCDF files. These can be found in the netcdf/ directory for nav, met and tss. Please note that a full day of navigation from the above fake datagram would take about 2 GB of data. So in some scenarios you might want to disable the creation of these files. However, for the 2020 Eurofleets+ campaigns, the Principal Investigator must report these NetCDF files in the EMODnet Ingestion Portal together with his other campaign data. So please keep this enabled and send him these files, as he will need them for his data submission!
 
 To disable EARS from creating these NetCDF files, comment out the following lines in the file Acquisition\_System/bin/conf/application.properties:
@@ -310,48 +296,44 @@ To disable EARS from creating these NetCDF files, comment out the following line
 acquisition.archiving.netcdf.file=./log/netcdf/{sensor}/{sensor}-{frame}-{date,yyyy-Mmdd-HH}.nc
 ```
 
-After this, kill the three docker containers, rebuild and restart them:
+After this, kill the four docker containers, rebuild and restart them:
 
 ```
-sudo docker kill ears-server_acquisition
-ears-server_tomcat ears-server_mysql
+sudo docker kill ears-server_acquisition ears-server_postgres ears-server_tomcat ears-server_mysql
 sudo docker-compose build
 sudo docker-compose up -d
 ```
+or simply `./run.sh`
 
 ## Data volumes
 
-In order to persist the crucial information in the database and the ontology and to safeguard it for when the docker container would be restarted or even deleted, the data is persisted in a directory outside of the docker container. These are &#39;ears\_mysql\_data&#39; and &#39;ontologies&#39;. Do not delete these directories.
+In order to persist the information in the database and the ontology and to safeguard it for when the docker container would be restarted or even deleted, the data is persisted in a directory outside of the docker container. These are &#39;ears\_mysql\_data&#39; and &#39;ontologies&#39;. Do not delete these directories.
 
 ## Troubleshooting
 
+If you for any reason would modify the Dockerfile (don't!), or any file except the docker-compose.yml file for that matter, you will need to rebuild the image(``sudo docker-compose build``).
+
 You can read the logs of the individual modules like so:
 
-The database: `sudo docker logs ears-server_mysql`
+The databases: `sudo docker logs ears-server_mysql` and `sudo docker logs ears-server_postgres`
 
 The web applications: `sudo docker logs ears-server_tomcat`
 
 The acquisition module: `sudo docker logs ears-server_acquisition`
 
-If you need to kill the docker images, for instance if you make a change in the Dockerfile, enter the following command:
-
-```
-sudo docker kill ears-server_acquisition
-ears-server_tomcat ears-server_mysql
-```
+If you need to kill the docker images, for instance if you make a change in the Dockerfile, enter `sudo docker kill ears-server_acquisition ears-server_postgres ears-server_tomcat ears-server_mysql`
 
 The Dockerfile should not be changed, only to change the access password for the vessel ontology, see higher.
 
 ## Coping with updates
 
-If a new version of any web application (ears2.war, ears2Nav.war) would need a replacement (of which you will be informed by email) please follow this procedure:
+If a new version of any web application (ears3.war, ears3Nav.war) would need a replacement (of which you will be informed by email) please follow this procedure:
 
 - Ensure you have a stable and fast internet connection
 - ssh to the server
 - cd to the ears-server directory
 ```
-sudo docker kill ears-server_acquisition
-ears-server_tomcat ears-server_mysql
+sudo docker kill ears-server_acquisition ears-server_postgres ears-server_tomcat ears-server_mysql
 git pull origin master
 sudo docker-compose build
 sudo docker-compose up -d
