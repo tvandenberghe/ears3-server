@@ -196,8 +196,11 @@ You have to change the RV identifier in the .env file. Please change EARS_PLATFO
 ## Usage
 
 Go to `http://localhost:8181/ears3/html/event` or simply `http://localhost:8181/ears3` to manage the programs and cruises and to create new events. You are first prompted to provide your name and email address. Please note that for the time being the event fields are populated with the ontology from the RV Belgica. This will be changed in the near future. A new vessel ontology file can be saved in the ontologies directory and the changes will be immediately visible in the event creation interface.
-Go to `http://localhost:8181/ears3/sml?platformUrn=SDN:C17::11BE` to see the Sensor ML for the whole ship. Follow the links for the events of specific devices.
+
+Go to `http://localhost:8181/ears3/sml?platformUrn=SDN:C17::11BE` to see the Sensor ML description for the whole ship. Follow the links for the events of specific devices.
+
 Go to `http://localhost:8181/ears3/cruise/csr?identifier=cruise_identifier` to see the a full SDN Cruise Summary Report. IT is not yet possible to create Cruises via the interface. 
+
 Go to `http://localhost:8080` for the acquisition.
 
 ## View the database, e.g. with MySQL Workbench
