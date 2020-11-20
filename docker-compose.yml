@@ -11,6 +11,8 @@ services:
   tomcat:
     build: .
     container_name: ears-server_tomcat
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
     environment:
       - EARS_JDBC_URL=jdbc:postgresql://postgres:5432/ears3
       - EARS_DB_CLASS=com.mysql.cj.jdbc.Driver
@@ -25,7 +27,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=ears
       - EARS_PLATFORM=${EARS_PLATFORM}
       - EARS_VESSEL_ADDRESS=${EARS_VESSEL_ADDRESS}
-      - EARS_NAVIGATION_SERVER=http://172.17.0.1:${EARS_PORT}
+      - EARS_NAVIGATION_SERVER=http://host.docker.internal:${EARS_PORT} 
       - EARS_CSR_LICENSE=${EARS_CSR_LICENSE}
       - EARS_ONTOLOGY_USERNAME=${EARS_ONTOLOGY_USERNAME}
       - EARS_ONTOLOGY_PASSWORD=${EARS_ONTOLOGY_PASSWORD}
