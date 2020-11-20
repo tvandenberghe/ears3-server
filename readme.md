@@ -21,17 +21,11 @@ The techniques needed to combine data into the datagrams are not part of these g
 
 **Datagram description navigation data (POS):**
 
-Start identifier
+Start identifier: always $PSDGPOS
 
-Format$PSDGPOS
+Date of position: ddmmyy
 
-Date of position
-
-Formatddmmyy
-
-UTC time of position
-
-Formathhmmss
+UTC time of position: hh24mmss
 
 Longitude in decimal degrees
 
@@ -55,45 +49,33 @@ $PSDGPOS,131017,132035,3.01803,51.44738,216.2,8.9,
 
 **Datagram description thermosalinograph data (TSS):**
 
-Start identifier
+Start identifier: always $PSDGTSS
 
-Format $PSDGTSS
+Date of position: ddmmyy
 
-Date of position
-
-Format ddmmyy
-
-UTC time of position
-
-Format hhmmss
-
-Sea water temperature in °C
+UTC time of position: hh24mmss
 
 Salinity in PSU
 
-Sigma theta in kg/m³
-
-Conductivity in S/m
+Sea water temperature in °C
 
 Raw fluorometry in V
 
+Conductivity in S/m
+
+Sigma theta in kg/m³
+
 _ **Example:** _
 
-$PSDGTSS,131017,132035,14.7808,33.5449,24.8983,41.1335,0.6275
+$PSDGTSS,131017,132035,33.5449,14.7808,0.6275,41.1335,24.8983
 
-**Datagram description MET (meteo data):**
+**Datagram description meteo data (MET):**
 
-Start identifier
+Start identifier: always $PSDGMET
 
-Format $PSDGMET
+Date of position: ddmmyy
 
-Date of position
-
-Format ddmmyy
-
-UTC time of position
-
-Format hhmmss
+UTC time of position: hh24mmss
 
 Mean wind speed in m/s
 
@@ -151,8 +133,9 @@ Go to where you want to install the docker container. The location has no specia
 ```
 cd <installation directory>
 git clone https://github.com/tvandenberghe/ears3-server.git
-cd ears-server
+cd ears3-server
 ```
+The address will change to `https://github.com/naturalsciences/ears3-server.git`
 
 ## Create the docker container and run the image
 
@@ -253,7 +236,6 @@ Type the password (casino) and verify the tables have been created correctly. La
 
 ```
 mysql -h $ip -u casino -p casino -e 'select * from Navigation limit 10;'
-mysql -h $ip -u casino -p casino -e 'select * from event limit 10;'
 ```
 
 ## Verify the acquisition works
@@ -331,7 +313,7 @@ If a new version of any web application (ears3.war, ears3Nav.war) would need a r
 
 - Ensure you have a stable and fast internet connection
 - ssh to the server
-- cd to the ears-server directory
+- cd to the ears3-server directory, and
 ```
 sudo docker kill ears-server_acquisition ears-server_postgres ears-server_tomcat ears-server_mysql
 git pull origin master
